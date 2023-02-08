@@ -8,7 +8,6 @@
     <input type="radio" bind:group={color} name="color" value={"#00FF00"}>GREEN
     <input type="radio" bind:group={color} name="color" value={"#0000FF"}>BLUE
 
-    <button type="button" on:click={() => console.log(color)} />
 </form>
 
 

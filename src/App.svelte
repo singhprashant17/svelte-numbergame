@@ -3,18 +3,36 @@
 	import GameBoard from "./GameBoard.svelte";
 	import ControlButtons from "./ControlButtons.svelte";
 
-	let selectedColor
+	let selectedColor;
+	
+	let state;
+	resetState();
 
-    function updateColorForCell(cellId) {
+    function updateColorForCell(index) {
 		if(selectedColor == null) {
 			alert("select a colour first");
-			return false;
+			return;
 		}
 		console.log(selectedColor);
-		console.log("hehe , " + cellId);
+		console.log("hehe , " + index);
 
-        document.getElementById(cellId).style.backgroundColor = selectedColor;
+		state[index - 1].bgcolor = selectedColor;
+		state = state;
     }
+
+	function resetState() {
+		state = Array(9).fill(0).map((_, index) => {
+			return {
+				label: index + 1,
+				bgcolor: "#ffffff"
+			}
+		});
+	}
+
+	function shuffle() {
+		state.sort(() => (Math.random() > .5) ? 1 : -1);
+		state = state;
+	}
 </script>
 
 <main>
@@ -24,10 +42,14 @@
 	<GameBoard 
 		bind:selectedColor={selectedColor}
 		handleOnClick = {updateColorForCell}
+		bind:state={state}
 	/>
 	<br>
 	<br>
-	<ControlButtons/>
+	<ControlButtons
+		onReset={resetState}
+		onShuffle={shuffle}
+	/>
 </main>
 
 <style>
