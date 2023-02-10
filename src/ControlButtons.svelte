@@ -1,6 +1,14 @@
 <script>
-    export let onReset = () => {};
-    export let onShuffle = () => {};
+    import {createEventDispatcher} from "svelte";
+
+    const dispatch = createEventDispatcher();
+
+    function onReset() {
+        dispatch("reset");
+    };
+    function onShuffle() {
+        dispatch("shuffle");
+    };
 </script>
 
 <input id="but" type="button" value="Reset" on:click={onReset}>

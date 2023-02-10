@@ -1,5 +1,11 @@
 <script>
-    export let handleOnClick = (index) => {};
+    import { createEventDispatcher } from "svelte";
+    
+    const dispatch = createEventDispatcher();
+
+    function handleOnClick(index) {
+        dispatch("cell-clicked", index)
+    };
     export let state;
 </script>
 
@@ -13,7 +19,7 @@
         <!-- svelte-ignore a11y-click-events-have-key-events -->
         <td 
             value = {item.label}
-            on:click="{handleOnClick(i)}"
+            on:click="{() => handleOnClick(i)}"
             style="background: {item.bgcolor}">
         {item.label}
         </td>    

@@ -8,13 +8,15 @@
 	let state;
 	resetState();
 
-    function updateColorForCell(index) {
+    function updateColorForCell(event) {
 		if(selectedColor == null) {
 			alert("select a colour first");
 			return;
 		}
+		const index = event.detail;
+		console.log("hehe ");
 		console.log(selectedColor);
-		console.log("hehe , " + index);
+		console.log(index);
 
 		state[index].bgcolor = selectedColor;
 		state = state;
@@ -41,14 +43,14 @@
 	<br>
 	<GameBoard 
 		bind:selectedColor={selectedColor}
-		handleOnClick = {updateColorForCell}
+		on:cell-clicked = {updateColorForCell}
 		bind:state={state}
 	/>
 	<br>
 	<br>
 	<ControlButtons
-		onReset={resetState}
-		onShuffle={shuffle}
+		on:reset={resetState}
+		on:shuffle={shuffle}
 	/>
 </main>
 
