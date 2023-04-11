@@ -4,6 +4,7 @@
 	import ControlButtons from "./ControlButtons.svelte";
 
 	let selectedColor;
+	let boardSize = 4;
 	
 	let state;
 	resetState();
@@ -23,7 +24,8 @@
     }
 
 	function resetState() {
-		state = Array(9).fill(0).map((_, index) => {
+		let totalBlocks = Math.pow(boardSize, 2);
+		state = Array(totalBlocks).fill(0).map((_, index) => {
 			return {
 				label: index + 1,
 				bgcolor: "#ffffff"
@@ -42,7 +44,6 @@
 	<br>
 	<br>
 	<GameBoard 
-		bind:selectedColor={selectedColor}
 		on:cell-clicked = {updateColorForCell}
 		bind:state={state}
 	/>

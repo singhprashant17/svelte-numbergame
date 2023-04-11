@@ -11,8 +11,8 @@
 
 <table>
     {#each state as item,i}
-
-    {#if i%3 == 0}
+    {@const rootVal = Math.sqrt(state.length)}
+    {#if i%rootVal == 0}
         <tr>
     {/if}
         
